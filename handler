@@ -13,6 +13,7 @@ lastfm_api=$(dirname $0)/APIs/lastfm # path to lastfm API script
 google_api=$(dirname $0)/APIs/google # path to google API script
 youtube_api=$(dirname $0)/APIs/youtube # path to youtube API script
 googlebooks_api=$(dirname $0)/APIs/googlebooks # path to googlebooks API script
+tailwind_api=$(dirname $0)/APIs/tailwind # path to tailwind API script
 ##################################################
 
 
@@ -26,6 +27,7 @@ case "$API" in
 "google") search="$google_api" ; allowExcess=true ;;
 "books") search="$googlebooks_api" ;;
 "lastfm") search="$lastfm_api" ;;
+"tailwind") search="$tailwind_api" ;;
 *) echo "unrecognized api" && exit 1 ;; # unreachable
 esac
 

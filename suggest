@@ -3,7 +3,7 @@
 # rofi-blocks : https://github.com/OmarCastro/rofi-blocks
 # Author https://github.com/Belkadev
 
-[ -z "$1" ] && echo "suggest google|youtube|deezer|lastfm|books" && exit 1
+[ -z "$1" ] && echo "suggest google|youtube|deezer|lastfm|books|tailwind" && exit 1
 API="$1"
 #Full path to the handler script
 handler=$(dirname $0)/handler
@@ -15,6 +15,7 @@ case "$API" in
 "youtube") prompt="Youtube: " ;;
 "lastfm") prompt="Music: " ;; 
 "books") prompt="Books: " ;; 
+"tailwind") prompt="Tailwind CSS: " ;; 
 *) echo "unrecognized API" && exit 1 ;;
 esac 
 ###############
@@ -23,4 +24,9 @@ printf "$API" > "$logfile"
 rofi -modi blocks -show blocks -blocks-wrap $handler -display-blocks "$prompt" 2>/dev/null
 [ -f $logfile ] && selection="$(cat "$logfile")" || exit 0
 echo "$selection"
+
+case "$API" in
+  "google") xdg-open "https://google.com/search?q=$selection" ;;
+  *) echo "$selection"
+esac
 exit 0
