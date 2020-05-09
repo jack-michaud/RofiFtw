@@ -15,5 +15,5 @@ function query () {
     --data "{\"requests\":[{\"indexName\":\"tailwindcss\",\"params\":\"query=$(urlencode $@)&hitsPerPage=10&facetFilters=%5B%22version%3Av1%22%5D\"}]}" \
     --compressed &
 }
-res=$(jq '.results[0].hits[] | "\(.hierarchy.lvl0) > \(.hierarchy.lvl1)"' <<< "$(query $@)")
+res=$(jq '.results[0].hits[] | "\(.hierarchy.lvl0) > \(.hierarchy.lvl1) > \(.url)"' <<< "$(query $@)")
 echo "$res"

@@ -27,6 +27,7 @@ echo "$selection"
 
 case "$API" in
   "google") xdg-open "https://google.com/search?q=$selection" ;;
+  "tailwind") xdg-open $(echo "$selection" | awk -v FS=">" '{ print $3 }') ;;
   *) echo "$selection"
 esac
 exit 0
