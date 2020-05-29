@@ -20,6 +20,7 @@ case "$API" in
 "ddg") prompt="Ddg: " ;; 
 "amazon") prompt="Amazon: " ;; 
 "archwiki") prompt="Archwiki: " ;; 
+"spotify") prompt="Music: " ;; 
 *) echo "unrecognized API" && exit 1 ;;
 esac 
 ###############
@@ -29,9 +30,4 @@ rofi -modi blocks -show blocks -blocks-wrap $handler -display-blocks "$prompt" 2
 [ -f $logfile ] && selection="$(cat "$logfile")" || exit 0
 echo "$selection"
 
-case "$API" in
-  "google") xdg-open "https://google.com/search?q=$selection" ;;
-  "tailwind") xdg-open $(echo "$selection" | awk -v FS=">" '{ print $3 }') ;;
-  *) echo "$selection"
-esac
 exit 0

@@ -1,0 +1,17 @@
+#!/bin/bash
+# Author: https://github.com/jack-michaud
+
+suggest=$(dirname $0)/suggest
+
+API=$1
+
+selection=`$suggest $1`
+
+[ -z "$selection" ] && echo "No output from suggest" && exit 0
+
+case "$API" in
+  "google") xdg-open "https://google.com/search?q=$selection" ;;
+  "tailwind") xdg-open $(echo "$selection" | awk -v FS=">" '{ print $3 }') ;;
+  "spotify") play $selection ;;
+  *) echo "$selection"
+esac
